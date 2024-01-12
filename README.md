@@ -1,38 +1,51 @@
 # Temperature Converter
 
-You are tasked to develop a temperature converter program in C#. The program will accept temperature values in Fahrenheit, Celsius, and convert them to their corresponding values in the other units.
+Develop a temperature converter program in C# that converts temperature values between Fahrenheit and Celsius.
 
-## Requirements
+## Level 1
+Implements a TempConvert function to perform temperature conversions.
+- Function TempConvert should receive 2 parameters: the amount of temperature, and the original measurement unit
+- Function TempConvert should return the string, containing new temperature and new unit.
+```
+// Expected output
+TempConvert(32, "F") returns "0 C"
+TempConvert(100, "C") returns "212 F"
+```
 
-1. Prompt the user to input a temperature value and a temperature scale (either Celsius or Fahrenheit).
-2. Convert the temperature to the opposite scale and display the result.
-3. Handle invalid user inputs by displaying an error message and prompting the user to enter valid inputs.
-4. Write a function called `TempConvert` to perform the temperature conversions.
-5. Use `switch` statement to determine which conversion function to use based on the user's input for the temperature scale.
-6. Use type pattern in the `switch` statement to validate user's input.
-7. Application should run continuously, but have option to terminate the program.
-8. Rewrite `README` file and add your screenshots of testing application in your terminal.
+## Level 2: Additional Requirements
 
-## Examples
+- Modify the application to prompt the user for a temperature value and a scale (Celsius 'C' or Fahrenheit 'F').
+```
+// Expected output
+Enter a temperature and its unit (C or F):
+> 45 F
+Converted: 45 F = 7.22 C
 
-Your program does not need to look exactly like the example below, but should have similar features
+```
 
-````
-Please enter a temperature value and its unit of measurement (F or C):
-45 F
-45 F = 7.22 C
+### Level 3
 
-Please enter a temperature value and its unit of measurement (F or C):
-input C
-Invalid input. Please enter a valid temperature value and its unit of measurement (F or C):
+- Implement comprehensive error handling for invalid inputs (non-numeric values, unsupported scales).
+- Modify the program to continuously prompt the user for input until the user enters `Quit.
+```
+// Expected output
+Enter a temperature and its unit (C or F), or type 'Quit' to exit:
+> 30 X
+Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.
 
-Please enter a temperature value and its unit of measurement (F or C):
-30 X
-Invalid input. Please enter a valid temperature value and its unit of measurement (F or C):
+Enter a temperature and its unit (C or F), or type 'Quit' to exit:
+> forty-five C
+Invalid input. Please enter a numeric temperature.
 
-Please enter a temperature value and its unit of measurement (F or C):
-exit
+Enter a temperature and its unit (C or F), or type 'Quit' to exit:
+> 45 C
+Converted: 45 C = 113 F
+
+Enter a temperature and its unit (C or F), or type 'Quit' to exit:
+> Quit
 Program terminated.
-````
+
+```
 
 ## Screenshots of your output
+You should run your application and attach the screenshot image of your output (terminal) here.
