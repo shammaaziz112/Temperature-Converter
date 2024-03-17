@@ -3,9 +3,12 @@
 Develop a temperature converter program in C# that converts temperature values between Fahrenheit and Celsius.
 
 ## Level 1: Basic conversion
+
 Implements a TempConvert function to perform temperature conversions.
+
 - Function TempConvert should receive 2 parameters: the amount of temperature, and the original measurement unit
 - Function TempConvert should return the string, containing new temperature and new unit.
+
 ```
 // Expected output
 TempConvert(32, "F") returns "0 C"
@@ -15,6 +18,7 @@ TempConvert(100, "C") returns "212 F"
 ## Level 2: Additional requirement: Asking for user input
 
 - Modify the application to prompt the user for a temperature value and a scale (Celsius 'C' or Fahrenheit 'F').
+
 ```
 // Expected output
 Enter a temperature and its unit (C or F):
@@ -23,10 +27,11 @@ Converted: 45 F = 7.22 C
 
 ```
 
-### Level 3: Advanced requirement: Exception handler + Continuous interaction 
+### Level 3: Advanced requirement: Exception handler + Continuous interaction
 
 - Implement comprehensive error handling for invalid inputs (non-numeric values, unsupported scales).
 - Modify the program to continuously prompt the user for input until the user enters `Quit.
+
 ```
 // Expected output
 Enter a temperature and its unit (C or F), or type 'Quit' to exit:
@@ -48,4 +53,9 @@ Program terminated.
 ```
 
 ## Screenshots of your output
+
 You should run your application and attach the screenshot image of your output (terminal) here.
+
+## Deadline
+
+Tuesday 19th END OF THE DAY
