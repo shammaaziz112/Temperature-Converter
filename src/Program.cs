@@ -1,13 +1,14 @@
-﻿static void TempConvert(int temperature, char unit){
+﻿static string TempConvert(int temperature, char unit){
         if (unit == 'C'){
             int fr = temperature * 9 / 5 + 32;
-            Console.WriteLine(fr + " F");
+            return fr + " F";
         }
         else if (unit == 'F'){
             int cel = (temperature - 32) * 5 / 9;
-            Console.WriteLine(cel+ " C");
+            return cel+ " C";
         }
+        return "Enter correct measurement unit";
     }
 
-TempConvert(32, 'F');
-TempConvert(100, 'C');
+Console.WriteLine(TempConvert(32, 'F'));
+Console.WriteLine(TempConvert(100, 'C'));
