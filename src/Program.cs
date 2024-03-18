@@ -38,7 +38,7 @@ while (true)
 
         string[] inputArr = input.Split(" ");
 
-        float temperature = Convert.ToInt64(inputArr[0]);
+        float temperature = float.Parse(inputArr[0]);
         string unit = inputArr[1].ToUpper();
 
         if (unit == "F" || unit == "C")
