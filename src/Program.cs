@@ -1,58 +1,66 @@
-﻿string TempConvert(float temperature, char unit)
+﻿string TempConvert(float temperature, string unit)
 {
     switch (unit)
     {
-        case 'c':
+        case "c":
             float cel = temperature * 9 / 5 + 32;
             return $"{Math.Round((decimal)cel, 2)} F";
-        case 'f':
+        case "f":
             float fr = (temperature - 32) * 5 / 9;
             return $"{Math.Round((decimal)fr, 2)} C";
         default:
             break;
     }
-    return "Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.";
+    return "";
 }
 
-Boolean isContinue = true;
 
-while (isContinue)
+while (true)
 {
 
     try
     {
-        Console.WriteLine("Enter a temperature:");
-        float temperature = Convert.ToInt64(Console.ReadLine());
+        Console.WriteLine("Enter a temperature and its unit (C or F), or type 'Quit' to exit:");
 
-        Console.WriteLine("Enter a unit (C or F):");
-        char unit = Char.ToLower(Convert.ToChar(Console.ReadLine()));
-        if (unit == 'f' || unit == 'c')
+        string? input = Console.ReadLine();
+
+        if (input == "" || input is null || input.ToLower() == "quit")
+        {
+            Console.WriteLine("Program terminated");
+            return;
+        }
+
+        string[] inputArr = input.Split(" ");
+
+        float temperature = Convert.ToInt64(inputArr[0]);
+        string unit = inputArr[1].ToLower();
+
+        if (unit == "f" || unit == "c")
         {
             Console.WriteLine(TempConvert(temperature, unit));
         }
         else
         {
-
             throw new ArgumentException();
         }
 
-        Console.WriteLine("Do you went to Continue (y/n):");
-        // string input = ;
-        if (Console.ReadLine().ToLower() == "n")
-        {
-            isContinue = false;
-        }
-
-
+        Console.WriteLine("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 
     }
     catch (System.FormatException)
     {
         Console.WriteLine("Invalid input. Please enter a numeric temperature.");
+        Console.WriteLine("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
     }
-    catch (ArgumentException e)
+    catch (System.IndexOutOfRangeException)
+    {
+        Console.WriteLine("Invalid. Please enter a temperature and unit.");
+        Console.WriteLine("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
+    }
+    catch (ArgumentException)
     {
         Console.WriteLine("Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.");
+        Console.WriteLine("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
     }
     catch (System.Exception)
     {
@@ -60,4 +68,4 @@ while (isContinue)
     }
 }
 
-Console.WriteLine("Program terminated");
+
