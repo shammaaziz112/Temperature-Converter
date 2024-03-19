@@ -11,9 +11,8 @@ string TempConvert(float temperature, char unit)
             float fr = (temperature - 32) * 5 / 9;
             return $"Converted: {temperature} {unit} = {Math.Round((decimal)fr, 2)} C";
         default:
-            break;
+            throw new UnsupportedValue("Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.");
     }
-    return "";
 }
 
 // ** PrintDivider **
@@ -44,18 +43,13 @@ while (true)
         float temperature = float.Parse(inputArr[0]);
         char unit = char.Parse(inputArr[1].ToUpper());
 
-        if (unit == 'F' || unit == 'C')
-        {
-            //? Way 1 using function
-            Console.WriteLine(TempConvert(temperature, unit));
+        //? Way 1 using function
+        Console.WriteLine(TempConvert(temperature, unit));
 
-            //? Way 2 using class
-            // TemperatureConverter.Convert(temperature, char.Parse(unit));
-        }
-        else
-        {
-            throw new UnsupportedValue("Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.");
-        }
+        //? Way 2 using class
+        // TemperatureConverter.Convert(temperature, char.Parse(unit));
+
+
         PrintDivider();
 
     }
