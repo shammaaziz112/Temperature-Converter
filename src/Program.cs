@@ -1,12 +1,13 @@
-﻿string TempConvert(float temperature, string unit)
+﻿// ** TempConvert Function **
+string TempConvert(float temperature, char unit)
 {
     Console.ForegroundColor = ConsoleColor.Green;
     switch (unit)
     {
-        case "C":
+        case 'C':
             float cel = temperature * 9 / 5 + 32;
             return $"Converted: {temperature} {unit} = {Math.Round((decimal)cel, 2)} F";
-        case "F":
+        case 'F':
             float fr = (temperature - 32) * 5 / 9;
             return $"Converted: {temperature} {unit} = {Math.Round((decimal)fr, 2)} C";
         default:
@@ -15,12 +16,14 @@
     return "";
 }
 
+// ** PrintDivider **
 void PrintDivider()
 {
     Console.ForegroundColor = ConsoleColor.DarkCyan;
     Console.WriteLine("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 }
 
+// ** Main **
 while (true)
 {
     try
@@ -39,18 +42,28 @@ while (true)
         string[] inputArr = input.Split(" ");
 
         float temperature = float.Parse(inputArr[0]);
-        string unit = inputArr[1].ToUpper();
+        char unit = char.Parse(inputArr[1].ToUpper());
 
-        if (unit == "F" || unit == "C")
+        if (unit == 'F' || unit == 'C')
         {
+            //? Way 1 using function
             Console.WriteLine(TempConvert(temperature, unit));
+
+            //? Way 2 using class
+            // TemperatureConverter.Convert(temperature, char.Parse(unit));
         }
         else
         {
-            throw new ArgumentException();
+            throw new UnsupportedValue("Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.");
         }
         PrintDivider();
 
+    }
+    catch (UnsupportedValue ex)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(ex.Message);
+        PrintDivider();
     }
 
     catch (System.IndexOutOfRangeException)
@@ -65,14 +78,39 @@ while (true)
         Console.WriteLine("Invalid input. Please enter a numeric temperature.");
         PrintDivider();
     }
-    catch (ArgumentException)
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.");
-        PrintDivider();
-    }
+
     catch (System.Exception)
     {
         throw;
+    }
+}
+
+// ** TemperatureConverter Class **
+class TemperatureConverter
+{
+    public static void Convert(float temp, char unit)
+    {
+
+        float? convertResult;
+
+        if (unit == 'F')
+        {
+            convertResult = (temp - 32) * 5 / 9;
+            Console.WriteLine($"Converted: {temp} {unit} = {Math.Round((decimal)convertResult, 2)} C");
+        }
+        else if (unit == 'C')
+        {
+            convertResult = temp * 9 / 5 + 32;
+            Console.WriteLine($"Converted: {temp} {unit} = {Math.Round((decimal)convertResult, 2)} F");
+        }
+
+    }
+}
+
+class UnsupportedValue : Exception
+{
+
+    public UnsupportedValue(string massage) : base(massage)
+    {
     }
 }
