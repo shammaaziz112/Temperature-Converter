@@ -23,6 +23,15 @@ void PrintDivider()
 }
 
 // ** Main **
+Console.ForegroundColor = ConsoleColor.Blue;
+string title = @" ____  ____  _  _  ____  ____  ____   __  ____  _  _  ____  ____     ___  __   __ _  _  _  ____  ____  ____  ____  ____ 
+(_  _)(  __)( \/ )(  _ \(  __)(  _ \ / _\(_  _)/ )( \(  _ \(  __)   / __)/  \ (  ( \/ )( \(  __)(  _ \(_  _)(  __)(  _ \
+  )(   ) _) / \/ \ ) __/ ) _)  )   //    \ )(  ) \/ ( )   / ) _)   ( (__(  O )/    /\ \/ / ) _)  )   /  )(   ) _)  )   /
+ (__) (____)\_)(_/(__)  (____)(__\_)\_/\_/(__) \____/(__\_)(____)   \___)\__/ \_)__) \__/ (____)(__\_) (__) (____)(__\_)";
+
+Console.WriteLine(title);
+Console.WriteLine();
+
 while (true)
 {
     try
@@ -39,7 +48,6 @@ while (true)
         }
 
         string[] inputArr = input.Split(" ");
-
         float temperature = float.Parse(inputArr[0]);
         char unit = char.Parse(inputArr[1].ToUpper());
 
@@ -48,7 +56,6 @@ while (true)
 
         //? Way 2 using class
         // TemperatureConverter.Convert(temperature, char.Parse(unit));
-
 
         PrintDivider();
 
@@ -59,7 +66,6 @@ while (true)
         Console.WriteLine(ex.Message);
         PrintDivider();
     }
-
     catch (System.IndexOutOfRangeException)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -72,7 +78,6 @@ while (true)
         Console.WriteLine("Invalid input. Please enter a numeric temperature.");
         PrintDivider();
     }
-
     catch (System.Exception)
     {
         throw;
@@ -84,7 +89,6 @@ class TemperatureConverter
 {
     public static void Convert(float temp, char unit)
     {
-
         float? convertResult;
 
         if (unit == 'F')
@@ -97,14 +101,11 @@ class TemperatureConverter
             convertResult = temp * 9 / 5 + 32;
             Console.WriteLine($"Converted: {temp} {unit} = {Math.Round((decimal)convertResult, 2)} F");
         }
-
     }
 }
 
 class UnsupportedValue : Exception
 {
-
     public UnsupportedValue(string massage) : base(massage)
-    {
-    }
+    { }
 }
